@@ -5,4 +5,4 @@ build:
 	go build ./cmd/mop.go
 
 install:
-	go install github.com/michaeldv/mop/cmd
+	go install github.com/border/mop/cmd
