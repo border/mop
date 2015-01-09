@@ -57,7 +57,7 @@ loop:
 			switch event.Type {
 			case termbox.EventKey:
 				if lineEditor == nil && columnEditor == nil && !showingHelp {
-					if event.Key == termbox.KeyEsc || event.Ch == 'q' || event.Ch == 'Q' {
+					if event.Key == termbox.KeyEsc || event.Key == termbox.KeyCtrlC || event.Key == termbox.KeyCtrlZ || event.Ch == 'q' || event.Ch == 'Q' {
 						break loop
 					} else if event.Ch == '+' || event.Ch == '-' {
 						lineEditor = new(mop.LineEditor).Initialize(screen, quotes)
@@ -85,6 +85,8 @@ loop:
 					}
 				} else if showingHelp {
 					showingHelp = false
+					screen.Clear().Draw(market, quotes)
+				} else {
 					screen.Clear().Draw(market, quotes)
 				}
 			case termbox.EventResize:
